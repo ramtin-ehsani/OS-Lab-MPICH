@@ -9,12 +9,11 @@ void swap(int *xp, int *yp)
     *yp = temp;
 }
 
-void bubbleSort(int arr[], int n)
+void sort(int arr[], int n)
 {
    int i, j;
    for (i = 0; i < n-1; i++)     
  
-       // Last i elements are already in place  
        for (j = 0; j < n-i-1; j++)
            if (arr[j] > arr[j+1])
               swap(&arr[j], &arr[j+1]);
@@ -23,14 +22,8 @@ void merge(int arr1[], int arr2[], int n1, int n2, int arr3[])
 {
   int i = 0, j = 0, k = 0;
  
-    // Traverse both array
     while (i<n1 && j <n2)
     {
-        // Check if current element of first
-        // array is smaller than current element
-        // of second array. If yes, store first
-        // array element and increment first array
-        // index. Otherwise do same with second array
         if (arr1[i] < arr2[j])
             arr3[k++] = arr1[i++];
         else
@@ -101,7 +94,7 @@ int main(int argc, char** argv) {
     MPI_Recv(my_data, 5, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
     //calculations
-    bubbleSort(my_data,5);
+    sort(my_data,5);
 
     printf("I\'m world: %d, my_result is:\n",world_rank);
     for (int i = 0; i < 5; i++){
